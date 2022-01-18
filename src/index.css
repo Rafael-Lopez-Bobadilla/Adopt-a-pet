@@ -10,7 +10,7 @@
 }
 
 @font-face {
-  font-family: nameFont;
+  font-family: logoFont;
   src: url('./fonts/Niconne-Regular.ttf');
 }
 
@@ -26,5 +26,21 @@
 
 :root{
     --mainColor: rgb(38, 124, 91);
-    --regularText: 16px; 
+    font-family: mainFont;
+}
+
+.pointer:hover{
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.icon{
+  height: 20px;
+  margin-top: -5px;
+}
+
+@media(min-width: 500px){
+  .icon{
+    margin-top: 0;
+  }
 }
