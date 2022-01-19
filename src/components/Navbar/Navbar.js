@@ -9,7 +9,8 @@ const Navbar = () => {
   const iconSize = { fontSize: '33px' }
 
   useEffect(() => {
-    getUser()
+    //getUser()
+    console.log('get user')
   }, [])
 
   const getUser = async () => {
@@ -23,7 +24,7 @@ const Navbar = () => {
     <div className='navbar'>
       <div className='navbar-container'>
         <div className='navbar-logo'>Adopt a Pet</div>
-        <div className={`navbar-items ${showOptions && 'navbar-visible'}`}>
+        <div className={`navbar-items ${showOptions && 'navbar-visible'} center-column`}>
           {user ? <>
             <div className='navbar-userName navbar-item'>
               <div className='icon'><PersonIcon style={{ fontSize: '20px' }} /></div>

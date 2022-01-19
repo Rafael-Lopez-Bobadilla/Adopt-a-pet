@@ -1,0 +1,48 @@
+.placesInput{
+  position: relative;
+}
+
+.placesInput-icon{
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  right: 20px;
+  cursor: pointer;
+}
+
+.placesInput-current{
+  display: none;
+  width: 100%;
+  position: absolute;
+  top: 110%;
+  border-radius: 10px;
+  background-color: white;
+  color: black;
+  font-size: 18px;
+  padding: 5px 0;
+  font-family: mainFont;
+  text-align: center;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.placesInput-current:hover{
+  background-color: lightgray;
+}
+
+.pac-item{
+  padding: 15px 20px;
+}
+
+.pac-item:hover{
+  background-color: lightgray;
+}
+
+.pac-item-selected{
+  background-color: lightblue;
+}
+.pac-item-query{
+  font-size: 18px;
+}

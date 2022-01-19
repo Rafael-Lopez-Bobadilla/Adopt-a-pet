@@ -15,17 +15,18 @@
 }
 
 @font-face{
-  font-family: heroLabel;
+  font-family: homeLabel;
   src: url('./fonts/Lato-Italic.ttf')
 }
 
 @font-face{
-  font-family: heroLabel2;
+  font-family: homeLabel2;
   src: url('./fonts/Cantarell-Regular.ttf')
 }
 
 :root{
     --mainColor: rgb(38, 124, 91);
+    --grayBackground: #efeef1;
     font-family: mainFont;
 }
 
@@ -37,6 +38,24 @@
 .icon{
   height: 20px;
   margin-top: -5px;
+}
+
+.center-column{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.full-width{
+  width: 100%;
+}
+
+.label{
+  font-size: 25px;
+  letter-spacing: 2px;
+  font-family: homeLabel;
+  text-align: center;
+  margin: 20px 0;
 }
 
 @media(min-width: 500px){

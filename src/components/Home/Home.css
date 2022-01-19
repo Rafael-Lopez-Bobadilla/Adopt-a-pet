@@ -1,5 +1,24 @@
 .home{
   min-height: 100vh;
-  background-color: #efeef1;
-  font-size: 16px;
+  background-color: var(--grayBackground);
+  font-size: 20px;
+}
+
+.home-header{
+  font-size: 30px;
+  letter-spacing: 2px;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.home-filters{
+  width: 90%;
+  max-width: 400px;
+  margin: auto;
+}
+
+@media(min-width: 768px){
+  .home-header{
+    font-size: 40px;
+  }
 }
