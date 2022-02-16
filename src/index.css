@@ -35,9 +35,20 @@
   transform: scale(1.1);
 }
 
-.icon{
-  height: 20px;
-  margin-top: -5px;
+.label{
+  font-size: 25px;
+  letter-spacing: 2px;
+  font-family: homeLabel;
+  text-align: center;
+  margin-bottom: 20px;
+  margin-top: 50px;
+}
+
+/*Containers*/
+.filters-container{
+  width: 85%;
+  max-width: 400px;
+  margin: auto;
 }
 
 .center-column{
@@ -50,12 +61,33 @@
   width: 100%;
 }
 
-.label{
-  font-size: 25px;
-  letter-spacing: 2px;
-  font-family: homeLabel;
-  text-align: center;
-  margin: 20px 0;
+.filter{
+  position: relative;
+  box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
+  border-radius: 10px;
+}
+
+.filter-icon{
+  position: absolute;
+  top: 0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  right: 20px;
+  cursor: pointer;
+}
+
+input{
+  padding: 10px 20px;
+  font-family: mainFont;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+}
+
+.icon{
+  height: 20px;
+  margin-top: -5px;
 }
 
 @media(min-width: 500px){

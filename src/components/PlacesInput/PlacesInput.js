@@ -2,59 +2,51 @@ import './PlacesInput.css'
 import { useEffect, useRef } from 'react'
 import GpsFixedIcon from '@mui/icons-material/GpsFixed'
 import ClickAwayListener from '@mui/material/ClickAwayListener'
-import { initMap, getLocation, geoApi, apiKey } from './helperFunctions'
+import { initMap, onChangeAddress, getLocation } from './helperFunctions'
+import { expandContainer, shrinkContainer } from '../helperFunctions'
 const PlacesInput = () => {
   const input = useRef()
-  const currentLocation = useRef()
-  const onChangeAddress = (autocomplete) => {
-    const id = autocomplete.getPlace().place_id
-    if (!id) {
-      //delete location
-      return
-    }
-    const url = `${geoApi}?key=${apiKey}&place_id=${id}`
-    fetch(url).then(response => response.json())
-      .then(location => {
-        const coords = location.results[0].geometry.location
-        console.log(coords)
-        closeCurrent()
-      })
-  }
+  const getLocationBtn = useRef()
   const initautocomplete = () => {
     if (!input.current) return;
     const autocomplete = new window.google.maps.places.Autocomplete(input.current)
     autocomplete.setFields(['place_id'])
-    autocomplete.addListener('place_changed', () => onChangeAddress(autocomplete))
+    autocomplete.addListener('place_changed', () => onChangeAddress(autocomplete, closeBtn))
   }
   useEffect(() => {
     initMap().then(() => initautocomplete())
   }, [])
 
   const handleInput = () => {
-    openCurrent()
+    openBtn()
     //deleteLocation()
   }
-  const openCurrent = () => {
+  const openBtn = () => {
     if (input.current.value === '') {
-      currentLocation.current.style.display = 'block'
+      getLocationBtn.current.style.display = 'block'
+    } else {
+      expandContainer('.home', input)
     }
   }
-  const closeCurrent = () => {
-    currentLocation.current.style.display = 'none'
+
+  const closeBtn = () => {
+    getLocationBtn.current.style.display = 'none'
+    shrinkContainer('.home', '80px')
   }
-  const handleCurrentClick = () => {
-    closeCurrent()
-    //getLocation(input, setLocation)
+  const getCurrentLocation = () => {
+    closeBtn()
+    getLocation(input)
   }
   return (
-    <ClickAwayListener onClickAway={closeCurrent}>
-      <div className='placesInput full-width'>
+    <ClickAwayListener onClickAway={closeBtn}>
+      <div className='placesInput full-width filter'>
         <input ref={input} type='text' placeholder='Type a location...'
           onInput={handleInput}
-          onFocus={openCurrent}
-          className='full-width' />
-        <div onClick={handleCurrentClick} className='placesInput-icon'><GpsFixedIcon style={{ fontSize: '25px' }} /></div>
-        <div ref={currentLocation} className='placesInput-current' onClick={handleCurrentClick}>Use current location</div>
+          onFocus={openBtn}
+          className='full-width'
+        />
+        <div onClick={getCurrentLocation} className='filter-icon gps' alt='Use Current Location'><GpsFixedIcon style={{ fontSize: '25px' }} /></div>
+        <div ref={getLocationBtn} className='placesInput-getLocationBtn' onClick={getCurrentLocation}>Use current location</div>
       </div>
     </ClickAwayListener>
   )

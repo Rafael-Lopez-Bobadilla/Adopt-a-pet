@@ -24,7 +24,22 @@ export const initMap = () => {
   return loadAsyncScript(src)
 }
 
-export const getLocation = (input, setLocation) => {
+export const onChangeAddress = (autocomplete, closeBtn) => {
+  const id = autocomplete.getPlace().place_id
+  if (!id) {
+    //delete location
+    return
+  }
+  const url = `${geoApi}?key=${apiKey}&place_id=${id}`
+  fetch(url).then(response => response.json())
+    .then(location => {
+      const coords = location.results[0].geometry.location
+      console.log(coords)
+      closeBtn()
+    })
+}
+
+export const getLocation = (input) => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(position => {
       const coords = { lat: position.coords.latitude, lng: position.coords.longitude }
@@ -33,7 +48,7 @@ export const getLocation = (input, setLocation) => {
       fetch(url).then(response => response.json())
         .then(place => {
           input.current.value = place.plus_code.compound_code
-          setLocation(coords)
+          //setLocation(coords)
         })
     })
   }
